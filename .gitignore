@@ -8,3 +8,6 @@ tools/lists/
 dist/
 
 node_modules/
+
+# Videos gerados por tools/make-video.mjs (pesados; gerar de novo quando preciso)
+store/video/
