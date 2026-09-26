@@ -14,6 +14,12 @@ const OUT = join(ROOT, 'store', 'images');
 const exe = process.argv[2] || 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 mkdirSync(OUT, { recursive: true });
 
+// Uma pasta por idioma, com o idioma tambem no nome: en/1-popup.en.png
+function out(lang, name) {
+  mkdirSync(join(OUT, lang), { recursive: true });
+  return join(OUT, lang, `${name}.${lang}.png`);
+}
+
 const icon = 'data:image/png;base64,' + readFileSync(join(ROOT, 'icons', 'icon128.png')).toString('base64');
 
 const COPY = {
@@ -136,7 +142,7 @@ for (const lang of ['pt', 'en', 'es', 'fr']) {
   await comp.setViewport({ width: 1280, height: 800, deviceScaleFactor: 1 });
   await comp.setContent(frame(...COPY[lang].popup, popupShot));
   await new Promise(r => setTimeout(r, 300));
-  await comp.screenshot({ path: join(OUT, `${lang}-1-popup.png`) });
+  await comp.screenshot({ path: out(lang, "1-popup") });
   // Separadores de fundo nao sao desenhados -- cada um vem para a frente antes da captura.
   await page.bringToFront();
   await page.setViewport({ width: 1280, height: 800, deviceScaleFactor: 1 });
@@ -152,7 +158,7 @@ for (const lang of ['pt', 'en', 'es', 'fr']) {
   for (const [name, url] of shots) {
     await page.goto(url);
     await new Promise(r => setTimeout(r, 700));
-    await page.screenshot({ path: join(OUT, `${lang}-${name}.png`) });
+    await page.screenshot({ path: out(lang, name) });
   }
 
   // Imagem promocional pequena
@@ -160,12 +166,12 @@ for (const lang of ['pt', 'en', 'es', 'fr']) {
   await comp.setViewport({ width: 440, height: 280, deviceScaleFactor: 1 });
   await comp.setContent(tile(COPY[lang].tile, COPY[lang].tileSub));
   await new Promise(r => setTimeout(r, 300));
-  await comp.screenshot({ path: join(OUT, `${lang}-promo-440x280.png`) });
+  await comp.screenshot({ path: out(lang, "promo-440x280") });
 
   await comp.setViewport({ width: 1400, height: 560, deviceScaleFactor: 1 });
   await comp.setContent(marquee(...MARQUEE[lang]));
   await new Promise(r => setTimeout(r, 300));
-  await comp.screenshot({ path: join(OUT, `${lang}-marquee-1400x560.png`) });
+  await comp.screenshot({ path: out(lang, "marquee-1400x560") });
 
   await browser.close();
   console.log(`${lang}: 4 capturas + promo`);

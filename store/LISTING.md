@@ -92,10 +92,17 @@ Preencher primeiro o inglês e depois, em **Adicionar idioma**, acrescentar **Po
 
 **Categoria:** Bem-estar (*Well-being*). Alternativa: Privacidade e segurança.
 
-**Imagens** (`store/images/`):
-- Ícone da loja: `icons/icon128.png`
-- Capturas 1280×800: `pt-1-popup.png` … `pt-4-settings.png` (e as `en-*` na ficha em inglês)
-- Imagem promocional pequena 440×280: `pt-promo-440x280.png` / `en-promo-440x280.png`
+**Imagens** (`store/images/`, uma pasta por idioma, o idioma também no nome):
+
+| Campo | Ficheiro |
+|---|---|
+| Ícone da loja (todos os idiomas) | `store-icon-128.png` |
+| Capturas localizadas de cada idioma | `<idioma>/1-popup.<idioma>.png` … `<idioma>/4-settings.<idioma>.png` |
+| Capturas globais | `en/1-popup.en.png` … `en/4-settings.en.png` |
+| Mosaico promocional pequeno | `en/promo-440x280.en.png` |
+| Mosaico da parte superior | `en/marquee-1400x560.en.png` |
+
+Idiomas: `en` (inglês), `pt` (português — usar em pt-PT e pt-BR), `es` (espanhol), `fr` (francês).
 
 **Site oficial / suporte:** https://github.com/devgs8/abrigo
 
