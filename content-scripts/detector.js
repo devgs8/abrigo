@@ -49,9 +49,27 @@ function countMatches(text) {
   return (normalize(text).match(ADULT_RE) || []).length;
 }
 
+// Sites where the word-based detector would misfire: code hosts and stores
+// show text ABOUT adult content (blocklists, this extension's own source and
+// store page), and account/work tools must never lock someone out. The
+// blocklists still apply here -- only the detector stands down.
+const TRUSTED_HOSTS = [
+  'github.com', 'githubusercontent.com', 'gitlab.com', 'bitbucket.org',
+  'stackoverflow.com', 'stackexchange.com', 'developer.chrome.com', 'developer.mozilla.org',
+  'chromewebstore.google.com', 'chrome.google.com', 'microsoftedge.microsoft.com',
+  'accounts.google.com', 'myaccount.google.com', 'mail.google.com', 'docs.google.com',
+  'drive.google.com', 'classroom.google.com', 'login.microsoftonline.com',
+  'outlook.live.com', 'outlook.office.com', 'office.com', 'claude.ai'
+];
+
+function isTrustedHost(hostname) {
+  return TRUSTED_HOSTS.some(d => hostname === d || hostname.endsWith('.' + d));
+}
+
 let blocked = false;
 
 async function scanPage() {
+  if (isTrustedHost(location.hostname)) return;
   if (blocked) return;
   const BLOCKED_PAGE = chrome.runtime.getURL('/blocked/blocked.html');
   if (location.href.startsWith(BLOCKED_PAGE)) return;
