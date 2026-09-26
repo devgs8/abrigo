@@ -37,7 +37,7 @@ document.title = title + ' — Abrigo';
 if (reason === 'content') {
   chrome.runtime.sendMessage({ type: 'GET_SETTINGS' }).then(s => {
     if (s?.pinHash) document.getElementById('btnUnlock').classList.remove('hidden');
-  });
+  }).catch(() => {});
 }
 
 // The big adult blocklist redirects here without a domain in the URL; the
@@ -47,7 +47,7 @@ if (!params.get('domain')) {
     if (!url) return;
     try { domain = new URL(url).hostname.replace(/^www\./, ''); } catch { return; }
     document.getElementById('valDomain').textContent = domain;
-  });
+  }).catch(() => {});
 }
 
 document.getElementById('btnBack').addEventListener('click', () => {

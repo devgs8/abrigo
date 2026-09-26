@@ -4,7 +4,7 @@
   "short_name": "Abrigo",
   "description": "__MSG_appDescription__",
   "homepage_url": "https://github.com/devgs8/abrigo",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "default_locale": "en",
   "icons": {
     "16": "icons/icon16.png",

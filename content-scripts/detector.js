@@ -68,7 +68,22 @@ function isTrustedHost(hostname) {
 
 let blocked = false;
 
+// When the extension is reloaded or updated, the copy of this script already
+// running in open pages is cut off from it: every chrome.* call then throws
+// "Extension context invalidated". The new version injects itself on the
+// next page load, so the orphaned copy just stops watching.
+function extensionAlive() {
+  try { return !!chrome.runtime?.id; } catch { return false; }
+}
+
+function shutDown() {
+  clearTimeout(rescanTimer);
+  urlObserver?.disconnect();
+  window.removeEventListener('popstate', onUrlMaybeChanged);
+}
+
 async function scanPage() {
+  if (!extensionAlive()) { shutDown(); return; }
   if (isTrustedHost(location.hostname)) return;
   if (blocked) return;
   const BLOCKED_PAGE = chrome.runtime.getURL('/blocked/blocked.html');
@@ -160,12 +175,14 @@ async function scanPage() {
 
   if (score >= 30) {
     blocked = true;
+    // The page is about to navigate away, which can close the channel before
+    // the worker replies; that's expected, not an error.
     chrome.runtime.sendMessage({
       type: 'CONTENT_DETECTED',
       host,
       score,
       signals
-    });
+    }).catch(() => {});
     location.replace(
       chrome.runtime.getURL('/blocked/blocked.html') +
       '?cat=adult&reason=content&domain=' + encodeURIComponent(host) +
@@ -217,14 +234,15 @@ window.addEventListener('popstate', onUrlMaybeChanged);
 // Coalesced to one check per frame — this fires on every DOM mutation, and
 // search/feed pages mutate constantly.
 let urlCheckScheduled = false;
-new MutationObserver(() => {
+const urlObserver = new MutationObserver(() => {
   if (urlCheckScheduled) return;
   urlCheckScheduled = true;
   requestAnimationFrame(() => {
     urlCheckScheduled = false;
     onUrlMaybeChanged();
   });
-}).observe(document, { subtree: true, childList: true });
+});
+urlObserver.observe(document, { subtree: true, childList: true });
 
 // ── Lock the search engines' own SafeSearch switch ──────────────────────────
 // Bing renders a Strict/Moderate/Off switch right on the results page, so the
