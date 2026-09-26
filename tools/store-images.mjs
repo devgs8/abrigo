@@ -29,6 +29,16 @@ const COPY = {
     popup:   ['Protection in one click', 'Nearly half a million adult sites blocked, plus gambling and social media if you want.'],
     tile:    'Adult content blocker',
     tileSub: 'Free · No ads · Private'
+  },
+  es: {
+    popup:   ['Protección en un clic', 'Casi medio millón de sitios para adultos bloqueados, y apuestas y redes sociales si quieres.'],
+    tile:    'Bloqueo de contenido adulto',
+    tileSub: 'Gratis · Sin anuncios · Privado'
+  },
+  fr: {
+    popup:   ['Protection en un clic', 'Près d’un demi-million de sites pour adultes bloqués, et paris et réseaux sociaux si vous le souhaitez.'],
+    tile:    'Bloqueur de contenu pour adultes',
+    tileSub: 'Gratuit · Sans publicité · Privé'
   }
 };
 
@@ -80,7 +90,9 @@ function marquee(title, sub) {
 
 const MARQUEE = {
   pt: ['Bloqueio de conteúdo adulto', 'Gratuito · Sem anúncios · Nada sai do seu computador'],
-  en: ['Adult content blocker', 'Free · No ads · Nothing leaves your computer']
+  en: ['Adult content blocker', 'Free · No ads · Nothing leaves your computer'],
+  es: ['Bloqueo de contenido adulto', 'Gratis · Sin anuncios · Nada sale de tu ordenador'],
+  fr: ['Bloqueur de contenu pour adultes', 'Gratuit · Sans publicité · Rien ne quitte votre ordinateur']
 };
 
 // Icone da loja: diretrizes da Google pedem o desenho em 96x96 com 16 px
@@ -96,12 +108,14 @@ const MARQUEE = {
   console.log('icone da loja 128x128 (96 + margem 16)');
 }
 
-for (const lang of ['pt', 'en']) {
+const BROWSER_LANG = { pt: 'pt-PT', en: 'en-US', es: 'es-ES', fr: 'fr-FR' };
+
+for (const lang of ['pt', 'en', 'es', 'fr']) {
   const dir = join(tmpdir(), 'abrigo-store-' + lang);
   rmSync(dir, { recursive: true, force: true });
   const browser = await puppeteer.launch({
     executablePath: exe, headless: true, pipe: true, enableExtensions: true, userDataDir: dir,
-    args: ['--no-first-run', `--lang=${lang === 'pt' ? 'pt-PT' : 'en-US'}`]
+    args: ['--no-first-run', `--lang=${BROWSER_LANG[lang]}`]
   });
   const id = await browser.installExtension(ROOT);
   await browser.waitForTarget(t => t.type() === 'service_worker' && t.url().includes(id));
