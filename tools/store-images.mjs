@@ -55,6 +55,47 @@ function tile(text, sub) {
   </body></html>`;
 }
 
+// O mesmo desenho de tools/build-icons.mjs, em vetor: nitido em qualquer
+// tamanho (o PNG de 128 px esticado fica desfocado no mosaico grande).
+const ICON_SVG = (size) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4C6BFF"/><stop offset="1" stop-color="#7A5AF8"/></linearGradient></defs>
+  <rect width="24" height="24" rx="6" fill="url(#g)"/>
+  <g transform="translate(12 12.4) scale(0.72) translate(-12 -12)">
+    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" fill="#fff"/>
+    <path d="m8.6 12 2.4 2.4 4.4-4.6" fill="none" stroke="#4C5FEF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g></svg>`;
+
+// Mosaico grande (1400x560), usado se a loja destacar a extensao.
+function marquee(title, sub) {
+  return `<html><body style="margin:0;width:1400px;height:560px;display:flex;align-items:center;gap:56px;padding:0 120px;box-sizing:border-box;
+    font-family:ui-sans-serif,system-ui,'Segoe UI',sans-serif;background:linear-gradient(135deg,#4C6BFF,#7A5AF8);color:#fff">
+    <div style="filter:drop-shadow(0 16px 32px rgba(0,0,0,.3));line-height:0">${ICON_SVG(200)}</div>
+    <div>
+      <div style="font-size:84px;font-weight:800;letter-spacing:-.03em;line-height:1">Abrigo</div>
+      <div style="font-size:34px;font-weight:600;margin-top:14px">${title}</div>
+      <div style="font-size:22px;opacity:.85;margin-top:10px">${sub}</div>
+    </div>
+  </body></html>`;
+}
+
+const MARQUEE = {
+  pt: ['Bloqueio de conteúdo adulto', 'Gratuito · Sem anúncios · Nada sai do seu computador'],
+  en: ['Adult content blocker', 'Free · No ads · Nothing leaves your computer']
+};
+
+// Icone da loja: diretrizes da Google pedem o desenho em 96x96 com 16 px
+// transparentes a volta, dentro de 128x128. O icone da extensao ocupa tudo.
+{
+  const browser = await puppeteer.launch({ executablePath: exe, headless: true });
+  const page = await browser.newPage();
+  await page.setViewport({ width: 128, height: 128, deviceScaleFactor: 1 });
+  await page.setContent(`<html><body style="margin:0;background:transparent">
+    <img src="${icon}" style="width:96px;height:96px;margin:16px;display:block"></body></html>`);
+  await page.screenshot({ path: join(OUT, 'store-icon-128.png'), omitBackground: true });
+  await browser.close();
+  console.log('icone da loja 128x128 (96 + margem 16)');
+}
+
 for (const lang of ['pt', 'en']) {
   const dir = join(tmpdir(), 'abrigo-store-' + lang);
   rmSync(dir, { recursive: true, force: true });
@@ -104,6 +145,11 @@ for (const lang of ['pt', 'en']) {
   await comp.setContent(tile(COPY[lang].tile, COPY[lang].tileSub));
   await new Promise(r => setTimeout(r, 300));
   await comp.screenshot({ path: join(OUT, `${lang}-promo-440x280.png`) });
+
+  await comp.setViewport({ width: 1400, height: 560, deviceScaleFactor: 1 });
+  await comp.setContent(marquee(...MARQUEE[lang]));
+  await new Promise(r => setTimeout(r, 300));
+  await comp.screenshot({ path: join(OUT, `${lang}-marquee-1400x560.png`) });
 
   await browser.close();
   console.log(`${lang}: 4 capturas + promo`);
