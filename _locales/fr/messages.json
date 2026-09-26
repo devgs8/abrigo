@@ -38,7 +38,7 @@
   "blockedEncourage": {"message": "Faire une pause maintenant en vaut la peine."},
   "footer":           {"message": "Protégé par Abrigo"},
   "pinTitle":         {"message": "PIN de protection"},
-  "pinIntro":         {"message": "Le PIN empêche quiconque de désactiver la protection, de modifier les paramètres ou de désactiver Abrigo sur la page des extensions."},
+  "pinIntro":         {"message": "Le PIN empêche quiconque de désactiver la protection ou de modifier les paramètres d'Abrigo."},
   "pinSet":           {"message": "Définir le PIN"},
   "pinChange":        {"message": "Changer le PIN"},
   "pinRemove":        {"message": "Supprimer le PIN"},
@@ -51,9 +51,9 @@
   "pinMismatch":      {"message": "Les PIN ne correspondent pas"},
   "pinRemoved":       {"message": "PIN supprimé"},
   "randomPinTitle":   {"message": "Verrouiller définitivement"},
-  "randomPinDesc":    {"message": "Crée un PIN secret que personne ne connaît. Adultes, Jeux d'argent, Réseaux sociaux, YouTube et la page des extensions restent verrouillés définitivement."},
+  "randomPinDesc":    {"message": "Crée un PIN secret que personne ne connaît. Adultes, Jeux d'argent, Réseaux sociaux et YouTube restent verrouillés dans les paramètres d'Abrigo."},
   "randomPinBtn":     {"message": "Verrouiller avec un PIN secret"},
-  "randomPinConfirm": {"message": "Un PIN aléatoire que personne ne connaît sera créé — pas même vous.\n\nAdultes, Jeux d'argent, Réseaux sociaux et YouTube (bloqué) seront verrouillés, et la page des extensions du navigateur ne s'ouvrira plus. Impossible d'annuler depuis l'extension.\n\nContinuer ?"},
+  "randomPinConfirm": {"message": "Un PIN aléatoire que personne ne connaît sera créé — pas même vous.\n\nAdultes, Jeux d'argent, Réseaux sociaux et YouTube (bloqué) seront verrouillés : impossible de les désactiver ou de changer le PIN dans les paramètres d'Abrigo.\n\nContinuer ?"},
   "randomPinDone":    {"message": "Protections verrouillées avec un PIN secret"},
   "aboutTitle":       {"message": "À propos"},
   "aboutText":        {"message": "Gratuit et sans publicité. Tout fonctionne sur cet ordinateur : Abrigo ne collecte ni n'envoie votre historique de navigation."},
@@ -72,7 +72,5 @@
   "msgYoutube":       {"message": "YouTube est bloqué dans ce navigateur."},
   "msgSearch":        {"message": "La recherche contenait des termes pour adultes."},
   "msgEngine":        {"message": "Ce moteur de recherche ne permet pas de filtrer le contenu pour adultes."},
-  "msgContent":       {"message": "Cette page a été identifiée comme contenu pour adultes."},
-  "titleManage":      {"message": "Zone protégée par PIN"},
-  "msgManage":        {"message": "La gestion des extensions est protégée pour que Abrigo ne puisse pas être désactivé. Le bon PIN l'ouvre pendant 10 minutes."}
+  "msgContent":       {"message": "Cette page a été identifiée comme contenu pour adultes."}
 }

@@ -328,50 +328,14 @@ chrome.tabs.onRemoved.addListener((tabId) => {
   chrome.storage.session.remove('nav_' + tabId);
 });
 
-// ── PIN gate on the browser's extension management pages ────────────────────
-// With a PIN set, opening the extensions page (where Abrigo could be
-// switched off or removed) or the "reset settings" page (which disables every
-// extension) sends the tab to a PIN screen instead. The right PIN opens them
-// for a few minutes. Extensions can't touch chrome:// pages, but they can see
-// a tab navigate to one and send it elsewhere, which is what this does.
-
-const MANAGE_PAGE_RE = /^(chrome|edge|brave|opera|vivaldi):\/\/(extensions|settings\/(extensions|reset|resetProfileSettings))(\/|\?|#|$)/i;
-const MANAGE_UNLOCK_MS = 10 * 60 * 1000;
-
-async function gateManagePage(tabId, url) {
-  if (!url || !MANAGE_PAGE_RE.test(url)) return;
-
-  const { settings } = await chrome.storage.local.get('settings');
-  if (!settings?.pinHash) return;
-
-  const { manageUnlockUntil } = await chrome.storage.session.get('manageUnlockUntil');
-  if (manageUnlockUntil && manageUnlockUntil > Date.now()) return;
-
-  chrome.tabs.update(tabId, {
-    url: BLOCKED_PAGE + '?cat=manage&reason=manage&domain=' + encodeURIComponent(url.replace(/[?#].*$/, '')) +
-         '&target=' + encodeURIComponent(url)
-  });
-}
-
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  gateManagePage(tabId, changeInfo.url || (changeInfo.status === 'loading' ? tab.url : null));
-});
-chrome.tabs.onCreated.addListener((tab) => gateManagePage(tab.id, tab.pendingUrl || tab.url));
+// The extensions page is deliberately left alone: Chrome Web Store policy
+// doesn't allow an extension to stand between the user and managing or
+// removing extensions. Protection against removal comes from the browser's
+// own admin policy (force-install), not from the extension.
 
 // ── Message handler (from popup / options / blocked page) ────────────────────
 
 chrome.runtime.onMessage.addListener((msg, sender, reply) => {
-  // Checked here, not in the page, so a page can't grant itself access.
-  if (msg.type === 'UNLOCK_MANAGE') {
-    (async () => {
-      const { settings } = await chrome.storage.local.get('settings');
-      const ok = !!settings?.pinHash && settings.pinHash === await hashPin(msg.pin);
-      if (ok) await chrome.storage.session.set({ manageUnlockUntil: Date.now() + MANAGE_UNLOCK_MS });
-      reply({ ok });
-    })();
-    return true;
-  }
-
   if (msg.type === 'GET_BLOCKED_URL') {
     const key = 'nav_' + sender.tab?.id;
     chrome.storage.session.get(key).then(r => reply(r[key] || null));

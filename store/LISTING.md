@@ -27,7 +27,7 @@ Carregar `dist/abrigo-<versão>.zip` (gerar com `node tools/pack.mjs`).
 > O QUE BLOQUEIA
 > • Cerca de 477 mil sites adultos, incluindo vídeos e imagens desses sites embutidos noutras páginas.
 > • Sites novos que ainda não estão em lista nenhuma, reconhecidos pelo nome do domínio e por um detetor que analisa o conteúdo da página.
-> • Pesquisas explícitas no Google, Bing, DuckDuckGo, Yahoo, Brave Search, Startpage, Ecosia e Qwant — incluindo variações como "p0rn". O filtro seguro de cada motor de pesquisa fica sempre ligado.
+> • Pesquisas explícitas no Google, Bing, DuckDuckGo, Yahoo, Brave Search, Startpage, Ecosia e Qwant — incluindo palavras escritas com números ou espaços para enganar o filtro. O filtro seguro de cada motor de pesquisa fica sempre ligado.
 >
 > CATEGORIAS OPCIONAIS
 > • Apostas e jogos de azar
@@ -36,7 +36,7 @@ Carregar `dist/abrigo-<versão>.zip` (gerar com `node tools/pack.mjs`).
 > • YouTube: livre, modo restrito forçado, ou bloqueado
 >
 > PROTEÇÃO COM PIN (OPCIONAL)
-> Com um PIN definido, é preciso o PIN para desligar a proteção, mudar as definições ou abrir a página de extensões do browser. Ideal para proteger os filhos — ou para se proteger a si próprio.
+> Com um PIN definido, é preciso o PIN para desligar a proteção ou mudar as definições. Ideal para proteger os filhos — ou para se proteger a si próprio.
 > Para quem quer um compromisso firme, a opção "Trancar de vez" gera um PIN que ninguém conhece.
 >
 > PRIVADO POR DESENHO
@@ -60,7 +60,7 @@ Carregar `dist/abrigo-<versão>.zip` (gerar com `node tools/pack.mjs`).
 > WHAT IT BLOCKS
 > • About 477,000 adult sites, including their videos and images embedded in other pages.
 > • New sites not on any list yet, recognised by their domain name and by an on-page content detector.
-> • Explicit searches on Google, Bing, DuckDuckGo, Yahoo, Brave Search, Startpage, Ecosia and Qwant — including variations like "p0rn". Each search engine's safe-search mode is always on.
+> • Explicit searches on Google, Bing, DuckDuckGo, Yahoo, Brave Search, Startpage, Ecosia and Qwant — including words disguised with numbers or spaces. Each search engine's safe-search mode is always on.
 >
 > OPTIONAL CATEGORIES
 > • Gambling
@@ -69,7 +69,7 @@ Carregar `dist/abrigo-<versão>.zip` (gerar com `node tools/pack.mjs`).
 > • YouTube: open, forced Restricted Mode, or blocked
 >
 > PIN PROTECTION (OPTIONAL)
-> With a PIN set, the PIN is needed to turn protection off, change settings or open the browser's extensions page. Great for protecting your kids — or yourself.
+> With a PIN set, the PIN is needed to turn protection off or change settings. Great for protecting your kids — or yourself.
 > For a firm commitment, "Lock for good" creates a PIN nobody knows.
 >
 > PRIVATE BY DESIGN
@@ -104,8 +104,7 @@ Carregar `dist/abrigo-<versão>.zip` (gerar com `node tools/pack.mjs`).
 | Permissão | Justificação |
 |---|---|
 | `declarativeNetRequest` | Blocks the ~477k adult domains bundled in the extension (static rulesets) before the page loads, and blocks their embedded media on other sites. |
-| `webNavigation` | Detects searches on search engines so explicit queries can be blocked and each engine's safe-search parameter can be enforced. |
-| `tabs` | Redirects a blocked tab to the extension's block page, and — only when the user has set a PIN — redirects the browser's extensions page to a PIN screen so the protection can't be switched off without the PIN. |
+| `webNavigation` | Detects searches on search engines so explicit queries can be blocked (the tab is sent to the extension's block page) and each engine's safe-search parameter can be enforced. |
 | `storage` | Saves the user's settings (enabled categories, YouTube mode, PIN hash) locally. |
 | Host permission `<all_urls>` | The block rules and the on-page adult content detector must work on any site, since adult content can be on any domain. All analysis is local; nothing is sent anywhere. |
 
@@ -130,4 +129,4 @@ Carregar `dist/abrigo-<versão>.zip` (gerar com `node tools/pack.mjs`).
 
 ## Nota para a revisão (campo opcional "notas para o revisor")
 
-> The extensions-page PIN screen is opt-in: it only activates after the user deliberately sets a PIN in the extension's settings, and the correct PIN opens the page for 10 minutes. Its purpose is parental control and self-control — preventing the protection from being disabled on impulse. Without a PIN, the extension never interferes with chrome://extensions. The optional "Lock for good" mode shows a clear confirmation dialog explaining it cannot be undone from the extension before it is applied.
+> Abrigo is a content blocker. Its source contains lists of explicit keywords and adult domains only so it can recognise and block them — none of this content is ever displayed to the user. All filtering happens locally; the extension makes no network requests. The optional PIN only protects Abrigo's own settings; the extension never interferes with chrome://extensions or with uninstalling.

@@ -32,8 +32,7 @@ Estes dados nunca são enviados para lado nenhum e são apagados quando a extens
 |---|---|
 | Acesso a todos os sites | Aplicar o bloqueio e o detetor de conteúdo em qualquer página. |
 | `declarativeNetRequest` | Bloquear os sites da lista antes de carregarem. |
-| `webNavigation` | Verificar as pesquisas e forçar o filtro seguro dos motores de pesquisa. |
-| `tabs` | Mostrar a página de bloqueio e proteger a página de extensões com o PIN. |
+| `webNavigation` | Verificar as pesquisas, mostrar a página de bloqueio e forçar o filtro seguro dos motores de pesquisa. |
 | `storage` | Guardar as definições no próprio browser. |
 
 ## Contacto

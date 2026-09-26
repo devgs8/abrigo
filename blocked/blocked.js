@@ -10,15 +10,13 @@ const CATEGORY = {
   gambling: { label: 'catGambling', siteMsg: 'msgGambling' },
   social:   { label: 'catSocial',   siteMsg: 'msgSocial' },
   games:    { label: 'catGames',    siteMsg: 'msgGames' },
-  youtube:  { label: 'youtube',     siteMsg: 'msgYoutube' },
-  manage:   { label: 'protection',  siteMsg: 'msgManage' }
+  youtube:  { label: 'youtube',     siteMsg: 'msgYoutube' }
 };
 const REASON = {
   site:    { title: 'titleSite' },
   search:  { title: 'titleSearch',  msg: 'msgSearch' },
   engine:  { title: 'titleEngine',  msg: 'msgEngine' },
-  content: { title: 'titleContent', msg: 'msgContent' },
-  manage:  { title: 'titleManage',  msg: 'msgManage' }
+  content: { title: 'titleContent', msg: 'msgContent' }
 };
 
 const params = new URLSearchParams(location.search);
@@ -36,14 +34,6 @@ document.title = title + ' — Abrigo';
 // The PIN unlock only lifts blocks made by the page-content detector; the
 // blocklists and search checks ignore it. Offering it elsewhere would just
 // send people round in a loop, so it only shows where it works.
-// The extensions page gate only exists when a PIN is set, so the button always
-// applies there. "Uma pausa agora vale a pena" doesn't fit a settings page.
-if (reason === 'manage') {
-  document.getElementById('btnUnlock').classList.remove('hidden');
-  document.querySelector('.encourage').classList.add('hidden');
-  document.querySelector('[data-i18n="blockedMsg"]').classList.add('hidden');
-}
-
 if (reason === 'content') {
   chrome.runtime.sendMessage({ type: 'GET_SETTINGS' }).then(s => {
     if (s?.pinHash) document.getElementById('btnUnlock').classList.remove('hidden');
@@ -79,20 +69,6 @@ document.getElementById('pinCancel').addEventListener('click', () => {
 document.getElementById('pinConfirm').addEventListener('click', async () => {
   const pin = document.getElementById('pinInput').value.trim();
   if (!pin) return;
-
-  if (reason === 'manage') {
-    const { ok } = await chrome.runtime.sendMessage({ type: 'UNLOCK_MANAGE', pin });
-    if (ok) {
-      const target = params.get('target') || 'chrome://extensions';
-      const tab = await chrome.tabs.getCurrent();
-      chrome.tabs.update(tab.id, { url: target });
-    } else {
-      document.getElementById('pinError').classList.remove('hidden');
-      document.getElementById('pinInput').value = '';
-      document.getElementById('pinInput').focus();
-    }
-    return;
-  }
 
   const response = await chrome.runtime.sendMessage({ type: 'VERIFY_PIN', pin });
 

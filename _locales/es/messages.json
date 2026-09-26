@@ -38,7 +38,7 @@
   "blockedEncourage": {"message": "Hacer una pausa ahora vale la pena."},
   "footer":           {"message": "Protegido por Abrigo"},
   "pinTitle":         {"message": "PIN de protección"},
-  "pinIntro":         {"message": "El PIN impide que alguien desactive la protección, cambie los ajustes o desactive Abrigo en la página de extensiones."},
+  "pinIntro":         {"message": "El PIN impide que alguien desactive la protección o cambie los ajustes de Abrigo."},
   "pinSet":           {"message": "Definir PIN"},
   "pinChange":        {"message": "Cambiar PIN"},
   "pinRemove":        {"message": "Quitar PIN"},
@@ -51,9 +51,9 @@
   "pinMismatch":      {"message": "Los PIN no coinciden"},
   "pinRemoved":       {"message": "PIN quitado"},
   "randomPinTitle":   {"message": "Bloquear para siempre"},
-  "randomPinDesc":    {"message": "Crea un PIN secreto que nadie conoce. Adulto, Apuestas, Redes sociales, YouTube y la página de extensiones quedan bloqueados para siempre."},
+  "randomPinDesc":    {"message": "Crea un PIN secreto que nadie conoce. Adulto, Apuestas, Redes sociales y YouTube quedan bloqueados en los ajustes de Abrigo."},
   "randomPinBtn":     {"message": "Bloquear con PIN secreto"},
-  "randomPinConfirm": {"message": "Se creará un PIN aleatorio que nadie conoce, ni siquiera tú.\n\nAdulto, Apuestas, Redes sociales y YouTube (bloqueado) quedarán bloqueados, y la página de extensiones del navegador dejará de abrirse. No se podrá deshacer desde la extensión.\n\n¿Continuar?"},
+  "randomPinConfirm": {"message": "Se creará un PIN aleatorio que nadie conoce, ni siquiera tú.\n\nAdulto, Apuestas, Redes sociales y YouTube (bloqueado) quedarán bloqueados: no podrás desactivarlos ni cambiar el PIN en los ajustes de Abrigo.\n\n¿Continuar?"},
   "randomPinDone":    {"message": "Protecciones bloqueadas con PIN secreto"},
   "aboutTitle":       {"message": "Acerca de"},
   "aboutText":        {"message": "Gratis y sin anuncios. Todo funciona en este ordenador: Abrigo no recoge ni envía tu historial de navegación."},
@@ -72,7 +72,5 @@
   "msgYoutube":       {"message": "YouTube está bloqueado en este navegador."},
   "msgSearch":        {"message": "La búsqueda tenía términos de contenido adulto."},
   "msgEngine":        {"message": "Este buscador no permite filtrar contenido adulto."},
-  "msgContent":       {"message": "Esta página se identificó como contenido adulto."},
-  "titleManage":      {"message": "Área protegida con PIN"},
-  "msgManage":        {"message": "La gestión de extensiones está protegida para que Abrigo no se pueda desactivar. Con el PIN correcto se abre durante 10 minutos."}
+  "msgContent":       {"message": "Esta página se identificó como contenido adulto."}
 }

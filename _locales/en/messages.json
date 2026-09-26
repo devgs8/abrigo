@@ -38,7 +38,7 @@
   "blockedEncourage": {"message": "Taking a pause right now is worth it."},
   "footer":           {"message": "Protected by Abrigo"},
   "pinTitle":         {"message": "Protection PIN"},
-  "pinIntro":         {"message": "The PIN stops anyone from turning protection off, changing settings or disabling Abrigo on the extensions page."},
+  "pinIntro":         {"message": "The PIN stops anyone from turning protection off or changing Abrigo's settings."},
   "pinSet":           {"message": "Set PIN"},
   "pinChange":        {"message": "Change PIN"},
   "pinRemove":        {"message": "Remove PIN"},
@@ -51,9 +51,9 @@
   "pinMismatch":      {"message": "PINs don't match"},
   "pinRemoved":       {"message": "PIN removed"},
   "randomPinTitle":   {"message": "Lock for good"},
-  "randomPinDesc":    {"message": "Creates a secret PIN nobody knows. Adult, Gambling, Social media, YouTube and the extensions page stay locked for good."},
+  "randomPinDesc":    {"message": "Creates a secret PIN nobody knows. Adult, Gambling, Social media and YouTube stay locked in Abrigo's settings."},
   "randomPinBtn":     {"message": "Lock with secret PIN"},
-  "randomPinConfirm": {"message": "A random PIN will be created that nobody knows — not even you.\n\nAdult, Gambling, Social media and YouTube (blocked) will be locked, and the browser's extensions page will stop opening. This can't be undone from the extension.\n\nContinue?"},
+  "randomPinConfirm": {"message": "A random PIN will be created that nobody knows — not even you.\n\nAdult, Gambling, Social media and YouTube (blocked) will be locked: you won't be able to turn them off or change the PIN in Abrigo's settings.\n\nContinue?"},
   "randomPinDone":    {"message": "Protections locked with a secret PIN"},
   "aboutTitle":       {"message": "About"},
   "aboutText":        {"message": "Free and ad-free. Everything runs on this computer: Abrigo doesn't collect or send your browsing history."},
@@ -72,7 +72,5 @@
   "msgYoutube":       {"message": "YouTube is blocked in this browser."},
   "msgSearch":        {"message": "The search contained adult terms."},
   "msgEngine":        {"message": "This search engine can't filter adult content."},
-  "msgContent":       {"message": "This page was identified as adult content."},
-  "titleManage":      {"message": "PIN-protected area"},
-  "msgManage":        {"message": "Extension management is protected so Abrigo can't be switched off. The right PIN opens it for 10 minutes."}
+  "msgContent":       {"message": "This page was identified as adult content."}
 }

@@ -13,7 +13,7 @@
 - **Bloqueia pesquisas explícitas** no Google, Bing, DuckDuckGo, Yahoo, Brave Search, Startpage, Ecosia e Qwant, e força o filtro seguro de cada motor. Reconhece variações como `p0rn` ou `p o r n`.
 - **Categorias opcionais:** apostas, redes sociais, jogos online.
 - **YouTube:** livre, modo restrito forçado, ou bloqueado.
-- **PIN de proteção:** impede que alguém desligue a proteção, mude as definições ou abra a página de extensões do browser para desativar o Abrigo.
+- **PIN de proteção:** impede que alguém desligue a proteção ou mude as definições do Abrigo. Para impedir também a remoção da extensão, o Windows pode instalá-la por política de administrador (a partir da versão da Chrome Web Store).
 - **"Trancar de vez":** gera um PIN que ninguém conhece — para quem se quer proteger a si próprio sem possibilidade de voltar atrás.
 
 Interface em português, inglês, espanhol e francês.
@@ -64,7 +64,7 @@ As listas de domínios adultos vêm de dois projetos, ambos GPLv3:
 - Catches new sites by domain name and by an on-page detector.
 - Blocks explicit searches on 8 search engines and forces their safe-search mode.
 - Optional categories: gambling, social media, online games. YouTube: open, restricted, or blocked.
-- PIN protection for settings and for the browser's extensions page, plus a "lock for good" mode with a PIN nobody knows.
+- PIN protection for settings, plus a "lock for good" mode with a PIN nobody knows.
 
 **Privacy:** Abrigo makes no network requests and never collects or sends your browsing history. See [PRIVACY.md](PRIVACY.md).
 
