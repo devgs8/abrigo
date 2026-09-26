@@ -11,3 +11,6 @@ node_modules/
 
 # Videos gerados por tools/make-video.mjs (pesados; gerar de novo quando preciso)
 store/video/
+
+# Textos pessoais para redes sociais (so no PC do Geraldo)
+store/LINKEDIN.md
