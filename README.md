@@ -39,6 +39,7 @@ A pasta [`deploy/`](deploy/) tem scripts PowerShell para correr como administrad
 ```bash
 node tools/build-adult-rules.mjs     # descarrega as listas e gera rules/adult.json
 node tools/pack.mjs                  # gera dist/abrigo-<versão>.zip para a loja
+node tools/validate.mjs dist/abrigo-<versão>.zip   # verifica as regras da loja antes de submeter
 ```
 
 A lista de domínios em `rules/adult.json` é gerada — não editar à mão.

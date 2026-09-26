@@ -6,13 +6,23 @@ Tudo o que o painel de programador pede, pela ordem dos separadores. Copiar e co
 
 ## 1. Pacote
 
-Carregar `dist/abrigo-<versão>.zip` (gerar com `node tools/pack.mjs`).
+Gerar e validar antes de carregar:
+
+```
+node tools/pack.mjs
+node tools/validate.mjs dist/abrigo-<versão>.zip
+```
+
+Só carregar se o validador disser **OK**.
 
 ---
 
 ## 2. Ficha da loja (Store listing)
 
-### Português (idioma principal)
+O idioma por omissão do pacote é o **inglês** (`default_locale: en`), por isso o painel abre a ficha em inglês.
+Preencher primeiro o inglês e depois, em **Adicionar idioma**, acrescentar **Português (Portugal)** e **Português (Brasil)** com os mesmos textos em português (servem os dois).
+
+### Português — para pt-PT e pt-BR
 
 **Nome** (vem do manifest): Abrigo
 
