@@ -254,7 +254,11 @@ for (const lang of LANGS) {
 
   const out = join(OUT, `abrigo-demo.${lang}.mp4`);
   const ff = spawn(ffmpeg, ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-',
-    '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out],
+    // Os JPEG vem em gama completa; converter para a gama de video padrao (TV,
+    // BT.709). Sem isto sai yuvj420p e as cores ficam lavadas nalguns leitores.
+    '-vf', 'scale=in_range=full:out_range=tv:out_color_matrix=bt709,format=yuv420p',
+    '-colorspace', 'bt709', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-color_range', 'tv',
+    '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-movflags', '+faststart', out],
     { stdio: ['pipe', 'inherit', 'inherit'] });
   const done = new Promise((res, rej) => ff.on('close', c => c === 0 ? res() : rej(new Error('ffmpeg saiu com ' + c))));
 
