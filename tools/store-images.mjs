@@ -142,10 +142,12 @@ for (const lang of ['pt', 'en', 'es', 'fr']) {
   await page.setViewport({ width: 1280, height: 800, deviceScaleFactor: 1 });
 
   // 2-4. Paginas reais em 1280x800
+  // Dominio de exemplo na lingua da imagem (aparece na pagina de bloqueio).
+  const exampleDomain = { pt: 'exemplo-adulto.com', en: 'example-adult.com', es: 'ejemplo-adulto.com', fr: 'exemple-adulte.com' }[lang];
   const shots = [
-    ['2-site-bloqueado', `${base}/blocked/blocked.html?cat=adult&reason=site&domain=exemplo-adulto.com`],
-    ['3-pesquisa-bloqueada', `${base}/blocked/blocked.html?cat=adult&reason=search&domain=google.com`],
-    ['4-definicoes', `${base}/options/options.html`]
+    ['2-blocked-site', `${base}/blocked/blocked.html?cat=adult&reason=site&domain=${exampleDomain}`],
+    ['3-blocked-search', `${base}/blocked/blocked.html?cat=adult&reason=search&domain=google.com`],
+    ['4-settings', `${base}/options/options.html`]
   ];
   for (const [name, url] of shots) {
     await page.goto(url);

@@ -94,7 +94,7 @@ Preencher primeiro o inglês e depois, em **Adicionar idioma**, acrescentar **Po
 
 **Imagens** (`store/images/`):
 - Ícone da loja: `icons/icon128.png`
-- Capturas 1280×800: `pt-1-popup.png` … `pt-4-definicoes.png` (e as `en-*` na ficha em inglês)
+- Capturas 1280×800: `pt-1-popup.png` … `pt-4-settings.png` (e as `en-*` na ficha em inglês)
 - Imagem promocional pequena 440×280: `pt-promo-440x280.png` / `en-promo-440x280.png`
 
 **Site oficial / suporte:** https://github.com/devgs8/abrigo
