@@ -1,0 +1,14 @@
+[
+  {"id":2001,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=facebook.com"}},"condition":{"urlFilter":"||facebook.com","resourceTypes":["main_frame"]}},
+  {"id":2002,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=instagram.com"}},"condition":{"urlFilter":"||instagram.com","resourceTypes":["main_frame"]}},
+  {"id":2003,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=tiktok.com"}},"condition":{"urlFilter":"||tiktok.com","resourceTypes":["main_frame"]}},
+  {"id":2004,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=twitter.com"}},"condition":{"urlFilter":"||twitter.com","resourceTypes":["main_frame"]}},
+  {"id":2005,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=x.com"}},"condition":{"urlFilter":"||x.com","resourceTypes":["main_frame"]}},
+  {"id":2006,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=snapchat.com"}},"condition":{"urlFilter":"||snapchat.com","resourceTypes":["main_frame"]}},
+  {"id":2008,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=pinterest.com"}},"condition":{"urlFilter":"||pinterest.com","resourceTypes":["main_frame"]}},
+  {"id":2009,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=tumblr.com"}},"condition":{"urlFilter":"||tumblr.com","resourceTypes":["main_frame"]}},
+  {"id":2010,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=reddit.com"}},"condition":{"urlFilter":"||reddit.com","resourceTypes":["main_frame"]}},
+  {"id":2011,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=redd.it"}},"condition":{"urlFilter":"||redd.it","resourceTypes":["main_frame"]}},
+  {"id":2012,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=bsky.app"}},"condition":{"urlFilter":"||bsky.app","resourceTypes":["main_frame"]}},
+  {"id":2013,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=threads.net"}},"condition":{"urlFilter":"||threads.net","resourceTypes":["main_frame"]}}
+]

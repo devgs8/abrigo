@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abrigo</title>
+  <link rel="icon" href="../icons/icon32.png">
+  <link rel="stylesheet" href="../ui/theme.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <img src="../icons/icon48.png" alt="" class="brand-mark">
+    <div>
+      <div class="brand-name">Abrigo</div>
+      <div class="brand-sub" id="optTitle"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- Categorias -->
+  <section class="panel">
+    <div class="panel-head">
+      <h2 id="catTitle"></h2>
+      <p data-i18n="catIntro"></p>
+    </div>
+    <div class="cat-grid">
+      <label class="cat-card">
+        <span class="row-icon tone-red"><svg class="icon" viewBox="0 0 24 24"><path d="M10.73 5.08A10.74 10.74 0 0 1 21.94 11.65a1 1 0 0 1 0 .7 10.75 10.75 0 0 1-1.44 2.49"/><path d="M14.08 14.16a3 3 0 0 1-4.24-4.24"/><path d="M17.48 17.5a10.75 10.75 0 0 1-15.42-5.15 1 1 0 0 1 0-.7 10.75 10.75 0 0 1 4.45-5.14"/><path d="m2 2 20 20"/></svg></span>
+        <span class="cat-text"><span id="lblAdult"></span><small data-i18n="catAdultDesc"></small></span>
+        <input type="checkbox" id="catAdult" class="switch">
+      </label>
+      <label class="cat-card">
+        <span class="row-icon tone-amber"><svg class="icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="3"/><path d="M8 8h.01M16 8h.01M12 12h.01M8 16h.01M16 16h.01"/></svg></span>
+        <span class="cat-text"><span id="lblGambling"></span><small data-i18n="catGamblingDesc"></small></span>
+        <input type="checkbox" id="catGambling" class="switch">
+      </label>
+      <label class="cat-card">
+        <span class="row-icon tone-blue"><svg class="icon" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+        <span class="cat-text"><span id="lblSocial"></span><small data-i18n="catSocialDesc"></small></span>
+        <input type="checkbox" id="catSocial" class="switch">
+      </label>
+      <label class="cat-card">
+        <span class="row-icon tone-violet"><svg class="icon" viewBox="0 0 24 24"><rect width="20" height="12" x="2" y="6" rx="3"/><path d="M6 12h4M8 10v4M15 13h.01M18 11h.01"/></svg></span>
+        <span class="cat-text"><span id="lblGames"></span><small data-i18n="catGamesDesc"></small></span>
+        <input type="checkbox" id="catGames" class="switch">
+      </label>
+    </div>
+  </section>
+
+  <!-- YouTube -->
+  <section class="panel">
+    <div class="panel-head">
+      <h2 id="ytTitle"></h2>
+      <p data-i18n="ytIntro"></p>
+    </div>
+    <div class="radio-cards">
+      <label class="radio-card">
+        <input type="radio" name="youtube" value="free">
+        <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z"/></svg>
+        <span id="lblYtFree"></span>
+        <small data-i18n="ytFreeDesc"></small>
+      </label>
+      <label class="radio-card">
+        <input type="radio" name="youtube" value="restrict">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+        <span id="lblYtRestrict"></span>
+        <small data-i18n="ytRestrictDesc"></small>
+      </label>
+      <label class="radio-card">
+        <input type="radio" name="youtube" value="block">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
+        <span id="lblYtBlock"></span>
+        <small data-i18n="ytBlockDesc"></small>
+      </label>
+    </div>
+  </section>
+
+  <!-- PIN -->
+  <section class="panel">
+    <div class="panel-head">
+      <h2 id="pinTitle"></h2>
+      <p data-i18n="pinIntro"></p>
+    </div>
+    <div id="pinStatus" class="pin-status"></div>
+    <div class="pin-actions">
+      <button id="btnSetPin"    class="btn btn-primary"></button>
+      <button id="btnRemovePin" class="btn btn-ghost hidden"></button>
+    </div>
+    <div class="danger-zone">
+      <div>
+        <strong data-i18n="randomPinTitle"></strong>
+        <p data-i18n="randomPinDesc"></p>
+      </div>
+      <button id="btnRandomPin" class="btn btn-danger" data-i18n="randomPinBtn"></button>
+    </div>
+  </section>
+
+  <!-- Sobre -->
+  <section class="panel">
+    <div class="panel-head">
+      <h2 data-i18n="aboutTitle"></h2>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-value" id="statDomains">—</div><div class="stat-label" data-i18n="statDomains"></div></div>
+      <div class="stat"><div class="stat-value" id="statDate">—</div><div class="stat-label" data-i18n="statDate"></div></div>
+      <div class="stat"><div class="stat-value" id="statVersion">—</div><div class="stat-label" data-i18n="statVersion"></div></div>
+    </div>
+    <p class="about-text" data-i18n="aboutText"></p>
+  </section>
+
+</main>
+
+<!-- PIN dialog -->
+<div id="pinOverlay" class="pin-overlay hidden">
+  <div class="pin-dialog">
+    <div class="pin-lock">
+      <svg class="icon" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </div>
+    <div class="pin-dialog-title" id="pinDialogTitle"></div>
+    <input type="password" id="pinInput" class="pin-input" maxlength="8" placeholder="••••" inputmode="numeric" autocomplete="off">
+    <input type="password" id="pinConfirmInput" class="pin-input hidden" maxlength="8" placeholder="••••" inputmode="numeric" autocomplete="off">
+    <div id="pinDialogError" class="pin-error hidden"></div>
+    <div class="pin-btns">
+      <button id="pinCancel" class="btn btn-ghost" data-i18n="cancel"></button>
+      <button id="pinOk" class="btn btn-primary" data-i18n="confirm"></button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast hidden"></div>
+
+<script src="options.js"></script>
+</body>
+</html>

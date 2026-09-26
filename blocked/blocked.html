@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abrigo</title>
+  <link rel="icon" href="../icons/icon32.png">
+  <link rel="stylesheet" href="../ui/theme.css">
+  <link rel="stylesheet" href="blocked.css">
+</head>
+<body>
+  <main class="card">
+    <div class="shield">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+    </div>
+
+    <h1 id="blockTitle"></h1>
+    <p class="lead"><span id="blockReason"></span> <span data-i18n="blockedMsg"></span></p>
+
+    <dl class="details">
+      <div>
+        <dt data-i18n="blockedCat"></dt>
+        <dd><span class="chip" id="valCat"></span></dd>
+      </div>
+      <div>
+        <dt data-i18n="blockedDomain"></dt>
+        <dd id="valDomain"></dd>
+      </div>
+    </dl>
+
+    <div class="actions">
+      <button id="btnBack" class="btn btn-primary">
+        <svg class="icon" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
+        <span data-i18n="btnBack"></span>
+      </button>
+      <button id="btnUnlock" class="btn btn-ghost hidden">
+        <svg class="icon" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span data-i18n="btnUnlock"></span>
+      </button>
+    </div>
+
+    <p class="encourage" data-i18n="blockedEncourage"></p>
+  </main>
+
+  <footer class="footer">
+    <img src="../icons/icon32.png" alt="">
+    <span data-i18n="footer"></span>
+  </footer>
+
+  <!-- PIN unlock dialog -->
+  <div id="pinOverlay" class="pin-overlay hidden">
+    <div class="pin-dialog">
+      <div class="pin-lock">
+        <svg class="icon" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <div class="pin-title" data-i18n="pinEnter"></div>
+      <input type="password" id="pinInput" class="pin-input" maxlength="8" placeholder="••••" inputmode="numeric" autocomplete="off">
+      <div id="pinError" class="pin-error hidden" data-i18n="pinWrong"></div>
+      <div class="pin-buttons">
+        <button id="pinCancel" class="btn btn-ghost" data-i18n="cancel"></button>
+        <button id="pinConfirm" class="btn btn-primary" data-i18n="confirm"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="blocked.js"></script>
+</body>
+</html>

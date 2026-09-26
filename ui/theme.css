@@ -1,0 +1,156 @@
+/* Abrigo — tokens e componentes partilhados (popup, definições, página de bloqueio).
+   Modo escuro automático pelo sistema operativo. */
+
+:root {
+  --bg:          #F3F5FA;
+  --surface:     #FFFFFF;
+  --surface-2:   #F5F7FC;
+  --text:        #101828;
+  --muted:       #667085;
+  --border:      #E4E7EF;
+  --border-2:    #D0D5E1;
+  --brand:       #3D5AFE;
+  --brand-hover: #2F48D9;
+  --brand-soft:  #EEF1FF;
+  --ok:          #12A150;
+  --ok-soft:     #E6F6EC;
+  --danger:      #D92D20;
+  --danger-soft: #FDECEA;
+  --shadow:      0 1px 2px rgba(16, 24, 40, .05), 0 1px 3px rgba(16, 24, 40, .06);
+  --shadow-lg:   0 20px 40px -12px rgba(16, 24, 40, .25);
+  --radius:      12px;
+  --font: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:          #0C111D;
+    --surface:     #151B2B;
+    --surface-2:   #1B2336;
+    --text:        #ECEFF5;
+    --muted:       #98A2B3;
+    --border:      #262F45;
+    --border-2:    #344054;
+    --brand:       #7B8CFF;
+    --brand-hover: #95A3FF;
+    --brand-soft:  #1E2550;
+    --ok:          #3CCB7F;
+    --ok-soft:     #11291D;
+    --danger:      #F97066;
+    --danger-soft: #2E1614;
+    --shadow:      0 1px 2px rgba(0, 0, 0, .4);
+    --shadow-lg:   0 20px 40px -12px rgba(0, 0, 0, .7);
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+svg.icon {
+  width: 18px; height: 18px; flex-shrink: 0;
+  fill: none; stroke: currentColor; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+.hidden { display: none !important; }
+
+/* ── Interruptor (checkbox com aspeto de switch) ─────────────────────────── */
+
+input.switch {
+  appearance: none;
+  position: relative; flex-shrink: 0;
+  width: 38px; height: 22px;
+  border-radius: 999px;
+  background: var(--border-2);
+  cursor: pointer;
+  transition: background .2s;
+}
+input.switch::before {
+  content: '';
+  position: absolute; top: 3px; left: 3px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+  transition: transform .2s;
+}
+input.switch:checked { background: var(--ok); }
+input.switch:checked::before { transform: translateX(16px); }
+input.switch:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+input.switch.switch-lg { width: 48px; height: 28px; }
+input.switch.switch-lg::before { width: 22px; height: 22px; }
+input.switch.switch-lg:checked::before { transform: translateX(20px); }
+
+/* ── Botões ──────────────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid transparent; border-radius: 10px;
+  font: inherit; font-weight: 600; font-size: 13px;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.btn:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.btn-primary { background: var(--brand); color: #fff; }
+.btn-primary:hover { background: var(--brand-hover); }
+.btn-ghost { background: var(--surface); color: var(--text); border-color: var(--border); }
+.btn-ghost:hover { background: var(--surface-2); border-color: var(--border-2); }
+.btn-soft { background: var(--brand-soft); color: var(--brand); }
+.btn-soft:hover { filter: brightness(.97); }
+.btn-danger { background: var(--danger-soft); color: var(--danger); }
+.btn-danger:hover { filter: brightness(.97); }
+
+/* ── Diálogo de PIN ──────────────────────────────────────────────────────── */
+
+.pin-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  background: rgba(12, 17, 29, .55);
+  backdrop-filter: blur(4px);
+}
+.pin-dialog {
+  width: 100%; max-width: 300px;
+  padding: 24px 20px 20px;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  animation: pop .18s ease-out;
+}
+.pin-dialog .pin-lock {
+  width: 44px; height: 44px; margin: 0 auto 12px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--brand-soft); color: var(--brand);
+}
+.pin-title, .pin-dialog-title { font-weight: 700; font-size: 15px; margin-bottom: 14px; }
+.pin-input {
+  display: block; width: 100%;
+  padding: 10px; margin-bottom: 10px;
+  background: var(--surface-2); color: var(--text);
+  border: 1.5px solid var(--border); border-radius: 10px;
+  font: inherit; font-size: 22px; letter-spacing: 8px; text-align: center;
+  outline: none;
+}
+.pin-input:focus { border-color: var(--brand); }
+.pin-error { color: var(--danger); font-size: 12px; margin-bottom: 10px; }
+.pin-buttons, .pin-btns { display: flex; gap: 8px; margin-top: 4px; }
+.pin-buttons .btn, .pin-btns .btn { flex: 1; }
+
+@keyframes pop {
+  from { opacity: 0; transform: scale(.96); }
+  to   { opacity: 1; transform: scale(1); }
+}

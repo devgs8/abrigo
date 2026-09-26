@@ -1,0 +1,17 @@
+[
+  {"id":1001,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=bet365.com"}},"condition":{"urlFilter":"||bet365.com","resourceTypes":["main_frame"]}},
+  {"id":1002,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=pokerstars.com"}},"condition":{"urlFilter":"||pokerstars.com","resourceTypes":["main_frame"]}},
+  {"id":1003,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=888casino.com"}},"condition":{"urlFilter":"||888casino.com","resourceTypes":["main_frame"]}},
+  {"id":1004,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=williamhill.com"}},"condition":{"urlFilter":"||williamhill.com","resourceTypes":["main_frame"]}},
+  {"id":1005,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=betway.com"}},"condition":{"urlFilter":"||betway.com","resourceTypes":["main_frame"]}},
+  {"id":1006,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=draftkings.com"}},"condition":{"urlFilter":"||draftkings.com","resourceTypes":["main_frame"]}},
+  {"id":1007,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=fanduel.com"}},"condition":{"urlFilter":"||fanduel.com","resourceTypes":["main_frame"]}},
+  {"id":1008,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=betfair.com"}},"condition":{"urlFilter":"||betfair.com","resourceTypes":["main_frame"]}},
+  {"id":1009,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=unibet.com"}},"condition":{"urlFilter":"||unibet.com","resourceTypes":["main_frame"]}},
+  {"id":1010,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=bwin.com"}},"condition":{"urlFilter":"||bwin.com","resourceTypes":["main_frame"]}},
+  {"id":1011,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=casinoeuro.com"}},"condition":{"urlFilter":"||casinoeuro.com","resourceTypes":["main_frame"]}},
+  {"id":1012,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=betsson.com"}},"condition":{"urlFilter":"||betsson.com","resourceTypes":["main_frame"]}},
+  {"id":1013,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=leovegas.com"}},"condition":{"urlFilter":"||leovegas.com","resourceTypes":["main_frame"]}},
+  {"id":1014,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=mr.green"}},"condition":{"urlFilter":"||mr.green","resourceTypes":["main_frame"]}},
+  {"id":1015,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=gambling&domain=partypoker.com"}},"condition":{"urlFilter":"||partypoker.com","resourceTypes":["main_frame"]}}
+]

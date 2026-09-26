@@ -1,0 +1,10 @@
+# Gerado pelo browser ao carregar a extensão
+_metadata/
+
+# Listas descarregadas pelo build (grandes; o resultado fica em rules/adult.json)
+tools/lists/
+
+# Pacotes para a loja
+dist/
+
+node_modules/

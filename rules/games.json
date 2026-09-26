@@ -1,0 +1,9 @@
+[
+  {"id":3001,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=games&domain=twitch.tv"}},"condition":{"urlFilter":"||twitch.tv","resourceTypes":["main_frame"]}},
+  {"id":3002,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=games&domain=roblox.com"}},"condition":{"urlFilter":"||roblox.com","resourceTypes":["main_frame"]}},
+  {"id":3003,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=games&domain=miniclip.com"}},"condition":{"urlFilter":"||miniclip.com","resourceTypes":["main_frame"]}},
+  {"id":3004,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=games&domain=poki.com"}},"condition":{"urlFilter":"||poki.com","resourceTypes":["main_frame"]}},
+  {"id":3005,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=games&domain=crazygames.com"}},"condition":{"urlFilter":"||crazygames.com","resourceTypes":["main_frame"]}},
+  {"id":3006,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=games&domain=kongregate.com"}},"condition":{"urlFilter":"||kongregate.com","resourceTypes":["main_frame"]}},
+  {"id":3007,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=games&domain=addictinggames.com"}},"condition":{"urlFilter":"||addictinggames.com","resourceTypes":["main_frame"]}}
+]

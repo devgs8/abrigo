@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abrigo</title>
+  <link rel="stylesheet" href="../ui/theme.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <img src="../icons/icon48.png" alt="" class="brand-mark">
+    <span>Abrigo</span>
+  </div>
+  <span id="lockBadge" class="lock-badge hidden">
+    <svg class="icon" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    <span data-i18n="pinActive"></span>
+  </span>
+</header>
+
+<section id="hero" class="hero">
+  <div class="hero-icon">
+    <svg class="icon icon-on" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+    <svg class="icon icon-off" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m14.5 9.5-5 5"/><path d="m9.5 9.5 5 5"/></svg>
+  </div>
+  <div class="hero-text">
+    <div id="statusLabel" class="hero-title"></div>
+    <div id="heroSub" class="hero-sub"></div>
+  </div>
+  <input type="checkbox" id="toggleEnabled" class="switch switch-lg" data-i18n-label="protection">
+</section>
+
+<div id="mainContent">
+  <div class="group-label" data-i18n="categories"></div>
+  <div class="list">
+    <label class="row">
+      <span class="row-icon tone-red">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M10.73 5.08A10.74 10.74 0 0 1 21.94 11.65a1 1 0 0 1 0 .7 10.75 10.75 0 0 1-1.44 2.49"/><path d="M14.08 14.16a3 3 0 0 1-4.24-4.24"/><path d="M17.48 17.5a10.75 10.75 0 0 1-15.42-5.15 1 1 0 0 1 0-.7 10.75 10.75 0 0 1 4.45-5.14"/><path d="m2 2 20 20"/></svg>
+      </span>
+      <span class="row-text"><span data-i18n="catAdult"></span><small data-i18n="catAdultDesc"></small></span>
+      <input type="checkbox" id="catAdult" class="switch">
+    </label>
+    <label class="row">
+      <span class="row-icon tone-amber">
+        <svg class="icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="3"/><path d="M8 8h.01M16 8h.01M12 12h.01M8 16h.01M16 16h.01"/></svg>
+      </span>
+      <span class="row-text"><span data-i18n="catGambling"></span><small data-i18n="catGamblingDesc"></small></span>
+      <input type="checkbox" id="catGambling" class="switch">
+    </label>
+    <label class="row">
+      <span class="row-icon tone-blue">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+      </span>
+      <span class="row-text"><span data-i18n="catSocial"></span><small data-i18n="catSocialDesc"></small></span>
+      <input type="checkbox" id="catSocial" class="switch">
+    </label>
+    <label class="row">
+      <span class="row-icon tone-violet">
+        <svg class="icon" viewBox="0 0 24 24"><rect width="20" height="12" x="2" y="6" rx="3"/><path d="M6 12h4M8 10v4M15 13h.01M18 11h.01"/></svg>
+      </span>
+      <span class="row-text"><span data-i18n="catGames"></span><small data-i18n="catGamesDesc"></small></span>
+      <input type="checkbox" id="catGames" class="switch">
+    </label>
+  </div>
+
+  <div class="group-label" data-i18n="youtube"></div>
+  <div class="segmented" role="radiogroup">
+    <label><input type="radio" name="youtube" value="free"><span data-i18n="ytFree"></span></label>
+    <label><input type="radio" name="youtube" value="restrict"><span data-i18n="ytRestrict"></span></label>
+    <label><input type="radio" name="youtube" value="block"><span data-i18n="ytBlock"></span></label>
+  </div>
+</div>
+
+<footer>
+  <button id="btnSettings" class="btn btn-ghost">
+    <svg class="icon" viewBox="0 0 24 24"><path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4"/></svg>
+    <span data-i18n="settings"></span>
+  </button>
+  <button id="btnPin" class="btn btn-ghost">
+    <svg class="icon" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    <span data-i18n="pin"></span>
+  </button>
+</footer>
+
+<!-- PIN dialog -->
+<div id="pinOverlay" class="pin-overlay hidden">
+  <div class="pin-dialog">
+    <div class="pin-lock">
+      <svg class="icon" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </div>
+    <div class="pin-title" id="pinDialogTitle"></div>
+    <input type="password" id="pinInput" class="pin-input" maxlength="8" placeholder="••••" inputmode="numeric" autocomplete="off">
+    <div id="pinError" class="pin-error hidden" data-i18n="pinWrong"></div>
+    <div class="pin-buttons">
+      <button id="pinCancel" class="btn btn-ghost" data-i18n="cancel"></button>
+      <button id="pinConfirm" class="btn btn-primary" data-i18n="confirm"></button>
+    </div>
+  </div>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>
