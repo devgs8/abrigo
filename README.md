@@ -24,7 +24,7 @@ O Abrigo não faz nenhum pedido à internet. Não recolhe, não guarda fora do b
 
 ## Instalar
 
-- **Chrome Web Store:** *(link quando a publicação for aprovada)*
+- **Chrome Web Store:** [instalar o Abrigo](https://chromewebstore.google.com/detail/abrigo/hpacahhegipipgmpiihbohdbjoecnlli) (funciona também no Edge)
 - **A partir do código:** `chrome://extensions` → ativar *Modo de programador* → *Carregar expandida* → escolher esta pasta.
 
 ### Proteção extra no Windows (opcional)
@@ -66,6 +66,8 @@ As listas de domínios adultos vêm de dois projetos, ambos GPLv3:
 - Blocks explicit searches on 8 search engines and forces their safe-search mode.
 - Optional categories: gambling, social media, online games. YouTube: open, restricted, or blocked.
 - PIN protection for settings, plus a "lock for good" mode with a PIN nobody knows.
+
+**Install:** [Chrome Web Store](https://chromewebstore.google.com/detail/abrigo/hpacahhegipipgmpiihbohdbjoecnlli) (also works in Edge).
 
 **Privacy:** Abrigo makes no network requests and never collects or sends your browsing history. See [PRIVACY.md](PRIVACY.md).
 
