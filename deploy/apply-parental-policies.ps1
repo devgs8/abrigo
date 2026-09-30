@@ -49,6 +49,9 @@ $extensionPages = @(
   'edge://extensions','edge://extensions/*','edge://settings/extensions'
 )
 
+$abrigoId    = 'hpacahhegipipgmpiihbohdbjoecnlli'
+$abrigoForce = "$abrigoId;https://clients2.google.com/service/update2/crx"
+
 $browsers = @{
   'Chrome' = 'HKLM:\SOFTWARE\Policies\Google\Chrome'
   'Edge'   = 'HKLM:\SOFTWARE\Policies\Microsoft\Edge'
@@ -114,7 +117,20 @@ foreach ($name in $browsers.Keys) {
     $i++
   }
 
-  Write-Host "$name -> $($all.Count) entradas em URLBlocklist, SafeSearch travado" -ForegroundColor Green
+  # --- Abrigo instalado a forca a partir da Chrome Web Store ---
+  # Extensao instalada por politica nao tem botao "Remover" nem se pode
+  # desligar. O Edge aceita o URL de atualizacao da Chrome Web Store.
+  $fl = Join-Path $root 'ExtensionInstallForcelist'
+  if (-not (Test-Path $fl)) { New-Item -Path $fl -Force | Out-Null }
+  $flProps = (Get-ItemProperty -Path $fl -ErrorAction SilentlyContinue).PSObject.Properties |
+    Where-Object { $_.Name -notlike 'PS*' }
+  if (-not ($flProps | Where-Object { ([string]$_.Value) -like "$abrigoId;*" })) {
+    $n = 1
+    while ($flProps | Where-Object { $_.Name -eq "$n" }) { $n++ }
+    New-ItemProperty -Path $fl -Name "$n" -Value $abrigoForce -PropertyType String -Force | Out-Null
+  }
+
+  Write-Host "$name -> $($all.Count) entradas em URLBlocklist, SafeSearch travado, Abrigo instalado por politica" -ForegroundColor Green
 }
 
 Write-Host ""

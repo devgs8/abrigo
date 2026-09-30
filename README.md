@@ -32,7 +32,7 @@ O Abrigo não faz nenhum pedido à internet. Não recolhe, não guarda fora do b
 A pasta [`deploy/`](deploy/) tem scripts PowerShell para correr como administrador:
 
 - `apply-dns-filter.ps1` — põe o Windows inteiro a usar o DNS da Cloudflare for Families (bloqueia sites adultos em qualquer browser ou programa, com ou sem a extensão). `-Undo` reverte.
-- `apply-parental-policies.ps1` — políticas do Chrome/Edge: SafeSearch forçado, janelas anónimas desligadas, filtro SafeSites, e uma lista curta de sites adultos **e o YouTube** bloqueados por completo (editar `$youtubeDomains` no script para o deixar de fora).
+- `apply-parental-policies.ps1` — políticas do Chrome/Edge: instala o Abrigo da Chrome Web Store por política (sem botão *Remover*), SafeSearch forçado, janelas anónimas desligadas, filtro SafeSites, e uma lista curta de sites adultos **e o YouTube** bloqueados por completo (editar `$youtubeDomains` no script para o deixar de fora).
 
 ## Desenvolvimento
 
