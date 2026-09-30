@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abrigo — bloqueio gratuito de conteúdo adulto</title>
+<meta name="description" content="Extensão gratuita para Chrome e Edge que bloqueia conteúdo adulto. Sem anúncios, sem contas, sem recolha de dados. / Free adult content blocker for Chrome and Edge.">
+<meta property="og:title" content="Abrigo — bloqueio gratuito de conteúdo adulto">
+<meta property="og:description" content="Extensão gratuita para Chrome e Edge. Sem anúncios, sem contas, não recolhe nenhum dado. / Free adult content blocker for Chrome and Edge.">
+<meta property="og:image" content="https://devgs8.github.io/abrigo/og.png">
+<meta property="og:url" content="https://devgs8.github.io/abrigo/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="icon.png">
+<style>
+  :root {
+    --bg: #F3F5FA; --surface: #FFFFFF; --surface-2: #F5F7FC;
+    --text: #101828; --muted: #667085; --border: #E4E7EF;
+    --brand: #3D5AFE; --brand-hover: #2F48D9; --brand-soft: #EEF1FF;
+    --ok: #12A150; --ok-soft: #E6F6EC;
+    --shadow: 0 1px 2px rgba(16,24,40,.05), 0 1px 3px rgba(16,24,40,.06);
+    --shadow-lg: 0 20px 40px -12px rgba(16,24,40,.25);
+    --radius: 14px;
+    --font: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0C111D; --surface: #151B2B; --surface-2: #1B2336;
+      --text: #ECEFF5; --muted: #98A2B3; --border: #262F45;
+      --brand: #7B8CFF; --brand-hover: #95A3FF; --brand-soft: #1E2550;
+      --ok: #3CCB7F; --ok-soft: #11291D;
+      --shadow: 0 1px 2px rgba(0,0,0,.4); --shadow-lg: 0 20px 40px -12px rgba(0,0,0,.7);
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  a { color: var(--brand); }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+  header { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; }
+  .logo img { width: 36px; height: 36px; }
+  .lang { display: flex; border: 1px solid var(--border); border-radius: 999px; overflow: hidden; background: var(--surface); }
+  .lang button { border: 0; background: none; color: var(--muted); font: inherit; font-size: 13px; font-weight: 600; padding: 6px 12px; cursor: pointer; }
+  .lang button[aria-pressed="true"] { background: var(--brand); color: #fff; }
+
+  .hero { text-align: center; padding: 32px 0 24px; }
+  .hero h1 { font-size: clamp(28px, 5vw, 44px); line-height: 1.15; letter-spacing: -.02em; }
+  .hero p { color: var(--muted); font-size: 18px; margin: 14px auto 0; max-width: 560px; }
+  .cta { margin-top: 28px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--brand); color: #fff; text-decoration: none; font-weight: 700; font-size: 18px; padding: 16px 30px; border-radius: 12px; box-shadow: var(--shadow-lg); transition: background .15s, transform .15s; }
+  .btn:hover { background: var(--brand-hover); transform: translateY(-1px); }
+  .btn svg { width: 22px; height: 22px; }
+  .small { color: var(--muted); font-size: 14px; }
+
+  video { display: block; width: 100%; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow-lg); background: var(--surface); margin: 16px 0 8px; }
+
+  h2 { font-size: 24px; letter-spacing: -.01em; margin: 48px 0 16px; }
+  .steps { list-style: none; display: grid; gap: 12px; counter-reset: s; }
+  .steps li { counter-increment: s; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px 16px 64px; position: relative; box-shadow: var(--shadow); }
+  .steps li::before { content: counter(s); position: absolute; left: 18px; top: 16px; width: 30px; height: 30px; border-radius: 50%; background: var(--brand-soft); color: var(--brand); font-weight: 700; display: grid; place-items: center; }
+  .steps b { display: block; margin-bottom: 2px; }
+  .steps span { color: var(--muted); }
+  kbd { font-family: inherit; font-size: .92em; background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+  .card b { display: block; margin-bottom: 4px; }
+  .card span { color: var(--muted); font-size: 15px; }
+  .card.ok { background: var(--ok-soft); border-color: transparent; }
+  .card.ok b { color: var(--ok); }
+
+  footer { margin: 56px 0 32px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; }
+
+  [data-lang="en"] .pt, [data-lang="pt"] .en { display: none !important; }
+</style>
+</head>
+<body data-lang="pt">
+<div class="wrap">
+
+<header>
+  <div class="logo"><img src="icon.png" alt="">Abrigo</div>
+  <div class="lang" role="group" aria-label="Idioma / Language">
+    <button type="button" data-set="pt" aria-pressed="true">PT</button>
+    <button type="button" data-set="en" aria-pressed="false">EN</button>
+  </div>
+</header>
+
+<section class="hero">
+  <h1 class="pt">Um browser sem conteúdo adulto.<br>Gratuito e privado.</h1>
+  <h1 class="en">A browser free of adult content.<br>Free and private.</h1>
+  <p class="pt">Extensão para Chrome e Edge. Sem anúncios, sem contas, e não recolhe nenhum dado: tudo funciona no teu computador.</p>
+  <p class="en">An extension for Chrome and Edge. No ads, no accounts, and no data collected: everything runs on your computer.</p>
+  <div class="cta">
+    <a class="btn" href="https://chromewebstore.google.com/detail/abrigo/hpacahhegipipgmpiihbohdbjoecnlli">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+      <span class="pt">Instalar grátis</span><span class="en">Install for free</span>
+    </a>
+    <span class="small pt">Chrome Web Store · funciona no Chrome e no Edge · só no computador</span>
+    <span class="small en">Chrome Web Store · works in Chrome and Edge · desktop only</span>
+  </div>
+</section>
+
+<video class="pt" src="demo.pt.mp4" poster="poster.pt.png" controls muted playsinline preload="metadata"></video>
+<video class="en" src="demo.en.mp4" poster="poster.en.png" controls muted playsinline preload="metadata"></video>
+
+<h2 class="pt">Como instalar</h2>
+<h2 class="en">How to install</h2>
+<ol class="steps pt">
+  <li><b>Carrega em “Instalar grátis”</b><span>Abre a página do Abrigo na Chrome Web Store.</span></li>
+  <li><b>Carrega em “Adicionar ao Chrome”</b><span>E confirma em <kbd>Adicionar extensão</kbd>. No Edge o botão chama-se <kbd>Obter</kbd>; se o Edge perguntar, aceita <kbd>Permitir extensões de outras lojas</kbd>.</span></li>
+  <li><b>Cria um PIN</b><span>Clica no ícone do Abrigo (a peça de puzzle na barra do browser) → Definições → <kbd>Definir PIN</kbd>. Sem PIN, qualquer pessoa pode desligar a proteção.</span></li>
+  <li><b>Escolhe o que bloquear</b><span>Conteúdo adulto já vem ligado. Nas definições podes juntar apostas, redes sociais, jogos online e escolher o modo do YouTube.</span></li>
+</ol>
+<ol class="steps en">
+  <li><b>Click “Install for free”</b><span>It opens Abrigo's page on the Chrome Web Store.</span></li>
+  <li><b>Click “Add to Chrome”</b><span>Then confirm with <kbd>Add extension</kbd>. In Edge the button is called <kbd>Get</kbd>; if Edge asks, accept <kbd>Allow extensions from other stores</kbd>.</span></li>
+  <li><b>Set a PIN</b><span>Click the Abrigo icon (the puzzle piece in the browser toolbar) → Settings → <kbd>Set PIN</kbd>. Without a PIN, anyone can turn protection off.</span></li>
+  <li><b>Choose what to block</b><span>Adult content is on by default. In the settings you can add gambling, social media, online games and pick a YouTube mode.</span></li>
+</ol>
+
+<h2 class="pt">O que faz</h2>
+<h2 class="en">What it does</h2>
+<div class="grid pt">
+  <div class="card"><b>~477 mil sites adultos</b><span>Bloqueados antes de a página abrir, incluindo vídeos e imagens embutidos noutros sites.</span></div>
+  <div class="card"><b>Sites novos</b><span>Um detetor local analisa a página e apanha sites que ainda não estão em nenhuma lista.</span></div>
+  <div class="card"><b>Pesquisas explícitas</b><span>Bloqueadas nos principais motores de pesquisa, com o filtro seguro sempre ligado.</span></div>
+  <div class="card"><b>Proteção com PIN</b><span>Ninguém desliga a proteção por impulso. O modo “Trancar de vez” cria um PIN que ninguém conhece.</span></div>
+  <div class="card ok"><b>100% privado</b><span>Não faz nenhum pedido à internet. Não tem contas nem anúncios. O teu histórico nunca sai do computador.</span></div>
+  <div class="card ok"><b>Código aberto</b><span>GPL-3.0: qualquer pessoa pode ver exatamente o que o código faz.</span></div>
+</div>
+<div class="grid en">
+  <div class="card"><b>~477k adult sites</b><span>Blocked before the page opens, including videos and images embedded in other sites.</span></div>
+  <div class="card"><b>New sites</b><span>A local detector analyses the page and catches sites not on any list yet.</span></div>
+  <div class="card"><b>Explicit searches</b><span>Blocked on the major search engines, with safe search always on.</span></div>
+  <div class="card"><b>PIN protection</b><span>Nobody turns protection off on impulse. “Lock for good” creates a PIN nobody knows.</span></div>
+  <div class="card ok"><b>100% private</b><span>Makes no network requests. No accounts, no ads. Your history never leaves your computer.</span></div>
+  <div class="card ok"><b>Open source</b><span>GPL-3.0: anyone can see exactly what the code does.</span></div>
+</div>
+
+<footer>
+  <span class="pt">Feito por Geraldo Silva · gratuito para sempre</span>
+  <span class="en">Made by Geraldo Silva · free forever</span>
+  <span>
+    <a href="https://github.com/devgs8/abrigo">GitHub</a> ·
+    <a href="https://github.com/devgs8/abrigo/blob/main/PRIVACY.md" class="pt">Privacidade</a><a href="https://github.com/devgs8/abrigo/blob/main/PRIVACY.md" class="en">Privacy</a> ·
+    <a href="https://github.com/devgs8/abrigo/issues" class="pt">Ajuda</a><a href="https://github.com/devgs8/abrigo/issues" class="en">Help</a>
+  </span>
+</footer>
+
+</div>
+<script>
+  (function () {
+    var body = document.body, buttons = document.querySelectorAll('.lang button');
+    function set(lang) {
+      body.setAttribute('data-lang', lang);
+      document.documentElement.lang = lang;
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.set === lang)); });
+      document.querySelectorAll('video').forEach(function (v) { if (!v.offsetParent) v.pause(); });
+      try { localStorage.setItem('abrigo-lang', lang); } catch (e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('abrigo-lang'); } catch (e) {}
+    var q = new URLSearchParams(location.search).get('lang');
+    set(q === 'en' || q === 'pt' ? q : saved || ((navigator.language || 'pt').toLowerCase().startsWith('pt') ? 'pt' : 'en'));
+    buttons.forEach(function (b) { b.addEventListener('click', function () { set(b.dataset.set); }); });
+  })();
+</script>
+</body>
+</html>
