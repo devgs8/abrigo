@@ -52,6 +52,8 @@
   .cta { margin-top: 28px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
   .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--brand); color: #fff; text-decoration: none; font-weight: 700; font-size: 18px; padding: 16px 30px; border-radius: 12px; box-shadow: var(--shadow-lg); transition: background .15s, transform .15s; }
   .btn:hover { background: var(--brand-hover); transform: translateY(-1px); }
+  .btn-alt { background: var(--surface); color: var(--brand); border: 2px solid var(--brand); box-shadow: var(--shadow); padding: 14px 28px; }
+  .btn-alt:hover { background: var(--brand-soft); }
   .btn svg { width: 22px; height: 22px; }
   .small { color: var(--muted); font-size: 14px; }
 
@@ -96,10 +98,14 @@
   <div class="cta">
     <a class="btn" href="https://chromewebstore.google.com/detail/abrigo/hpacahhegipipgmpiihbohdbjoecnlli">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
-      <span class="pt">Instalar grátis</span><span class="en">Install for free</span>
+      <span class="pt">Instalar no Chrome</span><span class="en">Install in Chrome</span>
     </a>
-    <span class="small pt">Chrome Web Store · funciona no Chrome e no Edge · só no computador</span>
-    <span class="small en">Chrome Web Store · works in Chrome and Edge · desktop only</span>
+    <a class="btn btn-alt" href="https://microsoftedge.microsoft.com/addons/detail/mgnpemfmkngonkkfmdjhbcgcnnokbhbb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+      <span class="pt">Instalar no Edge</span><span class="en">Install in Edge</span>
+    </a>
+    <span class="small pt">Gratuito · Chrome Web Store e Edge Add-ons · só no computador</span>
+    <span class="small en">Free · Chrome Web Store and Edge Add-ons · desktop only</span>
   </div>
 </section>
 
@@ -109,14 +115,14 @@
 <h2 class="pt">Como instalar</h2>
 <h2 class="en">How to install</h2>
 <ol class="steps pt">
-  <li><b>Carrega em “Instalar grátis”</b><span>Abre a página do Abrigo na Chrome Web Store.</span></li>
-  <li><b>Carrega em “Adicionar ao Chrome”</b><span>E confirma em <kbd>Adicionar extensão</kbd>. No Edge o botão chama-se <kbd>Obter</kbd>; se o Edge perguntar, aceita <kbd>Permitir extensões de outras lojas</kbd>.</span></li>
+  <li><b>Carrega em “Instalar no Chrome” ou “Instalar no Edge”</b><span>Abre a página do Abrigo na loja do teu browser.</span></li>
+  <li><b>Carrega em “Adicionar ao Chrome”</b><span>E confirma em <kbd>Adicionar extensão</kbd>. No Edge o botão chama-se <kbd>Obter</kbd>.</span></li>
   <li><b>Cria um PIN</b><span>Clica no ícone do Abrigo (a peça de puzzle na barra do browser) → Definições → <kbd>Definir PIN</kbd>. Sem PIN, qualquer pessoa pode desligar a proteção.</span></li>
   <li><b>Escolhe o que bloquear</b><span>Conteúdo adulto já vem ligado. Nas definições podes juntar apostas, redes sociais, jogos online e escolher o modo do YouTube.</span></li>
 </ol>
 <ol class="steps en">
-  <li><b>Click “Install for free”</b><span>It opens Abrigo's page on the Chrome Web Store.</span></li>
-  <li><b>Click “Add to Chrome”</b><span>Then confirm with <kbd>Add extension</kbd>. In Edge the button is called <kbd>Get</kbd>; if Edge asks, accept <kbd>Allow extensions from other stores</kbd>.</span></li>
+  <li><b>Click “Install in Chrome” or “Install in Edge”</b><span>It opens Abrigo's page on your browser's store.</span></li>
+  <li><b>Click “Add to Chrome”</b><span>Then confirm with <kbd>Add extension</kbd>. In Edge the button is called <kbd>Get</kbd>.</span></li>
   <li><b>Set a PIN</b><span>Click the Abrigo icon (the puzzle piece in the browser toolbar) → Settings → <kbd>Set PIN</kbd>. Without a PIN, anyone can turn protection off.</span></li>
   <li><b>Choose what to block</b><span>Adult content is on by default. In the settings you can add gambling, social media, online games and pick a YouTube mode.</span></li>
 </ol>

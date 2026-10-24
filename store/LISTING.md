@@ -37,7 +37,7 @@ Preencher primeiro o inglês e depois, em **Adicionar idioma**, acrescentar **Po
 > O QUE BLOQUEIA
 > • Cerca de 477 mil sites adultos, incluindo vídeos e imagens desses sites embutidos noutras páginas.
 > • Sites novos que ainda não estão em lista nenhuma, reconhecidos pelo nome do domínio e por um detetor que analisa o conteúdo da página.
-> • Pesquisas explícitas no Google, Bing, DuckDuckGo, Yahoo, Brave Search, Startpage, Ecosia e Qwant — incluindo palavras escritas com números ou espaços para enganar o filtro. O filtro seguro de cada motor de pesquisa fica sempre ligado.
+> • Pesquisas explícitas nos principais motores de pesquisa — incluindo palavras escritas com números ou espaços para enganar o filtro. O filtro seguro de cada motor de pesquisa fica sempre ligado.
 >
 > CATEGORIAS OPCIONAIS
 > • Apostas e jogos de azar
@@ -70,7 +70,7 @@ Preencher primeiro o inglês e depois, em **Adicionar idioma**, acrescentar **Po
 > WHAT IT BLOCKS
 > • About 477,000 adult sites, including their videos and images embedded in other pages.
 > • New sites not on any list yet, recognised by their domain name and by an on-page content detector.
-> • Explicit searches on Google, Bing, DuckDuckGo, Yahoo, Brave Search, Startpage, Ecosia and Qwant — including words disguised with numbers or spaces. Each search engine's safe-search mode is always on.
+> • Explicit searches on the major search engines — including words disguised with numbers or spaces. Each search engine's safe-search mode is always on.
 >
 > OPTIONAL CATEGORIES
 > • Gambling
@@ -89,6 +89,14 @@ Preencher primeiro o inglês e depois, em **Adicionar idioma**, acrescentar **Po
 > Built for the community, open source (GPL-3.0). Domain lists by the oisd and HaGeZi projects.
 >
 > Available in Portuguese, English, Spanish and French.
+
+### Español / Français (só a linha que mudou após a rejeição de 2026-09-28)
+
+> ES: • Búsquedas explícitas en los principales buscadores, incluidas las palabras disfrazadas con números o espacios. La búsqueda segura de cada buscador queda siempre activada.
+>
+> FR : • Les recherches explicites sur les principaux moteurs de recherche, y compris les mots déguisés avec des chiffres ou des espaces. Le filtrage sécurisé de chaque moteur reste toujours activé.
+
+**Atenção — política "Spam em palavras-chave":** não enumerar marcas (motores de pesquisa, sites, redes sociais) na descrição. A v1.5.2 foi rejeitada (violação "Yellow Argon") pela lista "Google, Bing, DuckDuckGo, Yahoo, Brave Search, Startpage, Ecosia e Qwant".
 
 **Categoria:** Bem-estar (*Well-being*). Alternativa: Privacidade e segurança.
 

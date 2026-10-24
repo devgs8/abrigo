@@ -10,5 +10,12 @@
   {"id":2010,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=reddit.com"}},"condition":{"urlFilter":"||reddit.com","resourceTypes":["main_frame"]}},
   {"id":2011,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=redd.it"}},"condition":{"urlFilter":"||redd.it","resourceTypes":["main_frame"]}},
   {"id":2012,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=bsky.app"}},"condition":{"urlFilter":"||bsky.app","resourceTypes":["main_frame"]}},
-  {"id":2013,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=threads.net"}},"condition":{"urlFilter":"||threads.net","resourceTypes":["main_frame"]}}
+  {"id":2013,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=threads.net"}},"condition":{"urlFilter":"||threads.net","resourceTypes":["main_frame"]}},
+  {"id":2014,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=kwai.com"}},"condition":{"urlFilter":"||kwai.com","resourceTypes":["main_frame"]}},
+  {"id":2015,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=kwai.net"}},"condition":{"urlFilter":"||kwai.net","resourceTypes":["main_frame"]}},
+  {"id":2016,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=kuaishou.com"}},"condition":{"urlFilter":"||kuaishou.com","resourceTypes":["main_frame"]}},
+  {"id":2017,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=pinterest.com"}},"condition":{"urlFilter":"||pinterest.com","resourceTypes":["main_frame"]}},
+  {"id":2018,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=pinterest.pt"}},"condition":{"urlFilter":"||pinterest.pt","resourceTypes":["main_frame"]}},
+  {"id":2019,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=pinterest.com.br"}},"condition":{"urlFilter":"||pinterest.com.br","resourceTypes":["main_frame"]}},
+  {"id":2020,"priority":1,"action":{"type":"redirect","redirect":{"extensionPath":"/blocked/blocked.html?cat=social&domain=pin.it"}},"condition":{"urlFilter":"||pin.it","resourceTypes":["main_frame"]}}
 ]

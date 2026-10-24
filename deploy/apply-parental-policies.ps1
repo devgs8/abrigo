@@ -8,12 +8,13 @@
 #   .\apply-parental-policies.ps1                        -> aplica tudo; pagina de extensoes livre
 #   .\apply-parental-policies.ps1 -LockExtensionsPage    -> tranca tambem a pagina de extensoes
 #                                                           para TODA a gente (nem com PIN abre)
+#   .\apply-parental-policies.ps1 -DisableIncognito      -> desliga as janelas anonimas/InPrivate
 #
 # A pagina de extensoes fica livre por omissao: desde a v1.3.0 o proprio
 # ShieldBlock pede o PIN para a abrir, e quem sabe o PIN pode gerir as outras
 # extensoes. O trancamento por politica so faz sentido num PC sem PIN definido.
 
-param([switch]$LockExtensionsPage)
+param([switch]$LockExtensionsPage, [switch]$DisableIncognito)
 
 #Requires -RunAsAdministrator
 
@@ -39,6 +40,13 @@ $youtubeDomains = @(
   'youtube.com','youtu.be','youtube-nocookie.com'
 )
 
+# Redes sociais bloqueadas por completo (tambem no anonimo, ao contrario da
+# extensao, que so la corre se tiver permissao).
+$socialDomains = @(
+  'kwai.com','kwai.net','kuaishou.com',
+  'pinterest.com','pinterest.pt','pinterest.com.br','pin.it'
+)
+
 # youtubekids.com fica DE FORA de proposito. googlevideo.com tambem, para nao
 # partir video incorporado noutros sites -- acrescentar se quiseres bloquear isso.
 
@@ -49,8 +57,12 @@ $extensionPages = @(
   'edge://extensions','edge://extensions/*','edge://settings/extensions'
 )
 
-$abrigoId    = 'hpacahhegipipgmpiihbohdbjoecnlli'
-$abrigoForce = "$abrigoId;https://clients2.google.com/service/update2/crx"
+# Cada browser instala o Abrigo da sua loja: o Edge fora de dominio ignora o
+# forcelist com o URL da Chrome Web Store, so aceita o do Edge Add-ons.
+$abrigo = @{
+  'Chrome' = @{ Id = 'hpacahhegipipgmpiihbohdbjoecnlli'; Update = 'https://clients2.google.com/service/update2/crx' }
+  'Edge'   = @{ Id = 'mgnpemfmkngonkkfmdjhbcgcnnokbhbb'; Update = 'https://edge.microsoft.com/extensionwebstorebase/v1/crx' }
+}
 
 $browsers = @{
   'Chrome' = 'HKLM:\SOFTWARE\Policies\Google\Chrome'
@@ -75,11 +87,18 @@ foreach ($name in $browsers.Keys) {
   # cobrindo o que a lista fixa nao apanha.
   New-ItemProperty -Path $root -Name 'SafeSitesFilterBehavior' -Value 1 -PropertyType DWord -Force | Out-Null
 
-  # --- Sem janelas anonimas (senao contorna o historico) ---
+  # --- Janelas anonimas ---
+  # Ficam disponiveis por omissao. As politicas deste script (SafeSearch,
+  # SafeSites, URLBlocklist) valem tambem no anonimo; o Abrigo so corre la
+  # depois de ligar "Permitir no modo anonimo" nos detalhes da extensao; para
+  # ninguem o desligar, usar -LockExtensionsPage.
+  # -DisableIncognito desliga-as de todo. Valores: Chrome 0 = disponivel,
+  # 1 = desativado; Edge igual.
+  $incognito = if ($DisableIncognito) { 1 } else { 0 }
   if ($name -eq 'Chrome') {
-    New-ItemProperty -Path $root -Name 'IncognitoModeAvailability' -Value 0 -PropertyType DWord -Force | Out-Null
+    New-ItemProperty -Path $root -Name 'IncognitoModeAvailability' -Value $incognito -PropertyType DWord -Force | Out-Null
   } else {
-    New-ItemProperty -Path $root -Name 'InPrivateModeAvailability' -Value 1 -PropertyType DWord -Force | Out-Null
+    New-ItemProperty -Path $root -Name 'InPrivateModeAvailability' -Value $incognito -PropertyType DWord -Force | Out-Null
   }
 
   # --- URLBlocklist: preserva o que ja la estiver, acrescenta o resto ---
@@ -94,7 +113,7 @@ foreach ($name in $browsers.Keys) {
       ForEach-Object { $all += [string]$_.Value }
   }
 
-  foreach ($d in ($adultDomains + $youtubeDomains)) {
+  foreach ($d in ($adultDomains + $youtubeDomains + $socialDomains)) {
     if ($all -notcontains $d)     { $all += $d }
     if ($all -notcontains "*.$d") { $all += "*.$d" }
   }
@@ -117,13 +136,23 @@ foreach ($name in $browsers.Keys) {
     $i++
   }
 
-  # --- Abrigo instalado a forca a partir da Chrome Web Store ---
+  # --- Abrigo instalado a forca a partir da loja do browser ---
   # Extensao instalada por politica nao tem botao "Remover" nem se pode
-  # desligar. O Edge aceita o URL de atualizacao da Chrome Web Store.
+  # desligar. Entradas do Abrigo com o ID da outra loja sao retiradas.
+  $abrigoId    = $abrigo[$name].Id
+  $abrigoForce = "$abrigoId;$($abrigo[$name].Update)"
+  $otherIds    = @($abrigo.Values | ForEach-Object { $_.Id } | Where-Object { $_ -ne $abrigoId })
   $fl = Join-Path $root 'ExtensionInstallForcelist'
   if (-not (Test-Path $fl)) { New-Item -Path $fl -Force | Out-Null }
-  $flProps = (Get-ItemProperty -Path $fl -ErrorAction SilentlyContinue).PSObject.Properties |
-    Where-Object { $_.Name -notlike 'PS*' }
+  $flProps = @((Get-ItemProperty -Path $fl -ErrorAction SilentlyContinue).PSObject.Properties |
+    Where-Object { $_.Name -notlike 'PS*' })
+  foreach ($p in $flProps) {
+    if ($otherIds | Where-Object { ([string]$p.Value) -like "$_;*" }) {
+      Remove-ItemProperty -Path $fl -Name $p.Name -Force
+    }
+  }
+  $flProps = @((Get-ItemProperty -Path $fl -ErrorAction SilentlyContinue).PSObject.Properties |
+    Where-Object { $_.Name -notlike 'PS*' })
   if (-not ($flProps | Where-Object { ([string]$_.Value) -like "$abrigoId;*" })) {
     $n = 1
     while ($flProps | Where-Object { $_.Name -eq "$n" }) { $n++ }

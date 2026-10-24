@@ -1,6 +1,6 @@
 {
   "appName":          {"message": "Abrigo"},
-  "appDescription":   {"message": "Bloqueio gratuito de conteúdo adulto e controlo parental"},
+  "appDescription":   {"message": "Bloqueio gratuito de conteúdo adulto e controle parental"},
   "protection":       {"message": "Proteção"},
   "on":               {"message": "Protegido"},
   "off":              {"message": "Proteção desligada"},
