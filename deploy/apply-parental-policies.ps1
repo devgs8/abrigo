@@ -159,6 +159,20 @@ foreach ($name in $browsers.Keys) {
     New-ItemProperty -Path $fl -Name "$n" -Value $abrigoForce -PropertyType String -Force | Out-Null
   }
 
+  # A copia do Abrigo da outra loja e bloqueada, para nao correrem duas.
+  $bl = Join-Path $root 'ExtensionInstallBlocklist'
+  if (-not (Test-Path $bl)) { New-Item -Path $bl -Force | Out-Null }
+  $blProps = @((Get-ItemProperty -Path $bl -ErrorAction SilentlyContinue).PSObject.Properties |
+    Where-Object { $_.Name -notlike 'PS*' })
+  foreach ($id in $otherIds) {
+    if (-not ($blProps | Where-Object { ([string]$_.Value) -eq $id })) {
+      $n = 1
+      while ($blProps | Where-Object { $_.Name -eq "$n" }) { $n++ }
+      New-ItemProperty -Path $bl -Name "$n" -Value $id -PropertyType String -Force | Out-Null
+      $blProps = @((Get-ItemProperty -Path $bl).PSObject.Properties | Where-Object { $_.Name -notlike 'PS*' })
+    }
+  }
+
   Write-Host "$name -> $($all.Count) entradas em URLBlocklist, SafeSearch travado, Abrigo instalado por politica" -ForegroundColor Green
 }
 
